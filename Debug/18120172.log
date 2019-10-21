@@ -1,1 +1,3 @@
-﻿  18120172.vcxproj -> D:\Coder\OOP\Pong Game\18120172\Debug\18120172.exe
+﻿  CDraw.cpp
+d:\coder\oop\pong game\18120172\18120172\cdraw.cpp(23): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+  18120172.vcxproj -> D:\Coder\OOP\Pong Game\18120172\Debug\18120172.exe

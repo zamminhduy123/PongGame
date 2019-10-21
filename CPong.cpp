@@ -16,8 +16,8 @@ void CPong::changDir(dir newDir)
 }
 
 void CPong::initial() {
-	spawnCor.setX(WIDTH / 2);
-	spawnCor.setY(HEIGHT / 2);
+	spawnCor.setX(WIDTH / 2 - 1);
+	spawnCor.setY(HEIGHT / 2 - 1);
 	curCor = spawnCor;
 }
 

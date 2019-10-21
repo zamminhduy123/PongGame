@@ -30,7 +30,8 @@ public:
 	void move(char);
 	void reset();
 	void initial(int,int);
-	bool zoneCheck();
+	bool upCheck();
+	bool downCheck();
 
 	int getCurX() {
 		return curCor.getX();

@@ -13,10 +13,12 @@ void CGame::upScore(CBar player) {
 
 void CGame::changeSpeed()
 {
-	if (speed >= 10)
+	if (speed >= minSpeed)
 		speed -= speedRange;
 	else
-		speed = minSpeed;
+	{
+		speed--;
+	}
 }
 
 void CGame::logic() {
@@ -30,7 +32,7 @@ void CGame::logic() {
 		changeSpeed();
 	}
 	// bar 2
-	if (pong.getCurX()+1 == playerTwo.getCurX()) {
+	if (pong.getCurX()+2 == playerTwo.getCurX()) {
 		for (int i = 0; i < barLength; i++) {
 			if (pong.getCurY() == playerTwo.getCurY() - barLength/2 + i) {
 				pong.changDir((dir)(rand() % 3 + 1));
@@ -49,18 +51,19 @@ void CGame::logic() {
 	// left
 	if (pong.getCurX() == 1) {
 		pong.reset();
-		upScore(playerOne);
+		upScore(playerTwo);
 	}
 	// right
 	if (pong.getCurX() == WIDTH - 2) {
-		upScore(playerTwo);
+		upScore(playerOne);
 		pong.reset();
 	}
 }
 
 void CGame::initial() {
 	drawBoard();
-	drawBar();
+	drawBar(2,HEIGHT/2);
+	drawBar(WIDTH - 3, HEIGHT / 2);
 	playerOne.initial(2, HEIGHT / 2);
 	playerTwo.initial(WIDTH - 3, HEIGHT / 2);
 	pong.initial();
@@ -68,21 +71,39 @@ void CGame::initial() {
 	pong.randomDir();
 }
 
+void CGame::displayScore() {
+	gotoXY(WIDTH/4 - 10, HEIGHT);
+	std::cout << "Player One Score: " << playerOneScore << std::endl;
+	gotoXY(3 * WIDTH / 4 - 10, HEIGHT);
+	std::cout << "Player Two Score: " << playerTwoScore << std::endl;
+}
+
+void CGame::unPause() {
+	drawBoard();
+	drawBar(playerOne.getCurX(),playerOne.getCurY());
+	drawBar(playerTwo.getCurX(),playerTwo.getCurY());
+	playerOne.initial(playerOne.getCurX(), playerOne.getCurY());
+	playerTwo.initial(playerTwo.getCurX(), playerTwo.getCurY());
+	pong.draw(pongChar);
+
+}
+
 void CGame::run() {
 	char key;
 	system("cls");
+	gotoXY(1, 1);
+	std::cout << "D";
 	initial();
 	while (1)
 	{
-		pong.draw(delChar);
-		logic();
-		pong.Move();
-		pong.draw(pongChar);
+		drawMiddleLine();
 		if (_kbhit()) {
 			key = _getch();
 			switch (key) {
 			case pauseGame:
 				pause();
+				system("cls");
+				unPause();
 				break;
 			case playerOneUpControl:
 				playerOne.move(playerOneUpControl);
@@ -103,6 +124,11 @@ void CGame::run() {
 				break;
 			}
 		}
+		pong.draw(delChar);
+		logic();
+		displayScore();
+		pong.Move();
+		pong.draw(pongChar);
 		Sleep(defaultSpeed);
 	}
 }
@@ -118,6 +144,8 @@ CGame::CGame()
 	srand(time(NULL));
 	speed = defaultSpeed;
 	quit = false;
+	playerOneScore = 0;
+	playerTwoScore = 0;
 }
 
 

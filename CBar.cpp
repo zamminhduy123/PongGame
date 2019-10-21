@@ -20,30 +20,39 @@ void CBar::moveDown() {
 	curCor.setY(curCor.getY() + 1);
 }
 
-bool CBar::zoneCheck() {
-	if ((getCurY() + getLength() / 2 == HEIGHT - 2) || (getCurY() - getLength() / 2 == 2)) {
+bool CBar::upCheck() {
+	if ((getCurY() - getLength() / 2 == 2)) {
+		return false;
+	}
+	return true;
+}
+
+bool CBar::downCheck() {
+	if ((getCurY() + getLength() / 2 == HEIGHT - 2)) {
 		return false;
 	}
 	return true;
 }
 
 void CBar::move(char movingKey) {
-	if (zoneCheck()) {
 		if (movingKey == playerOneUpControl || movingKey == playerTwoUpControl) {
-			gotoXY(getCurX(), getCurY() + getLength() / 2);
-			std::cout << " ";
-			moveUp();
-			gotoXY(getCurX(), getCurY() - getLength() / 2);
-			std::cout << barChar;
+			if (upCheck()) {
+				gotoXY(getCurX(), getCurY() + getLength() / 2);
+				std::cout << " ";
+				moveUp();
+				gotoXY(getCurX(), getCurY() - getLength() / 2);
+				std::cout << barChar;
+			}
 		}
 		else {
-			gotoXY(getCurX(), getCurY() - getLength() / 2);
-			std::cout << " ";
-			moveDown();
-			gotoXY(getCurX(), getCurY() + getLength() / 2);
-			std::cout << barChar;
+			if (downCheck()) {
+				gotoXY(getCurX(), getCurY() - getLength() / 2);
+				std::cout << " ";
+				moveDown();
+				gotoXY(getCurX(), getCurY() + getLength() / 2);
+				std::cout << barChar;
+			}
 		}
-	}
 }
 
 

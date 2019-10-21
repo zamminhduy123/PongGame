@@ -7,7 +7,7 @@
 
 #define pongChar 'o'
 #define delChar ' '
-enum dir {STOP = 0,LEFT = 1,UPLEFT = 3,DOWNLEFT = 4, RIGHT = 2, UPRIGHT =5,DOWNRIGHT = 6};
+enum dir {STOP = 0,LEFT = 1,UPLEFT = 2,DOWNLEFT = 3, RIGHT = 4, UPRIGHT =5,DOWNRIGHT = 6};
 
 class CPong
 {

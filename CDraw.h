@@ -11,4 +11,5 @@ void drawSelection(int x, int y, std::vector <std::string> menu, int cur, int De
 void drawBoard();
 int drawMenu(int &order);
 bool drawMenu2(std::vector <std::string> selection, int n, int &order);
-void drawBar();
+void drawBar(int,int);
+void drawMiddleLine();

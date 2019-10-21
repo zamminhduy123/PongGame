@@ -85,7 +85,7 @@ bool drawMenu2(std::vector <std::string> selection, int n, int &order)
 	while (1)
 	{
 		c = getch();  // nhan vao lua chon cua nguoi dung
-		if (c == 72 && cur != 2)  // mui ten di len
+		if (c == 72 && cur != 3)  // mui ten di len
 		{
 			drawSelection(x, y - D, selection, cur - 1, 6); // ve hcn o tren mau khac
 			drawSelection(x, y, selection, cur, bColor);		// ve hinh chu nhat o duoi mau ban dau
@@ -118,23 +118,26 @@ bool drawMenu2(std::vector <std::string> selection, int n, int &order)
 	setColor(0, fontColor); // set lai mau ban dau
 }
 
+void drawMiddleLine() {
+	for (int i = 1; i < HEIGHT / 2 - 1; i++) {
+		gotoXY(WIDTH / 2 - 1, i * 2);
+		std::cout << "\xDD";
+	}
+}
+
 void drawBoard() {
 	drawRect(0, 0, WIDTH, 1, bColor, fontColor);
 	drawRect(0, 0, 1, HEIGHT, bColor, fontColor);
 	drawRect(WIDTH - 1, 0, 1, HEIGHT, bColor, fontColor);
 	drawRect(0, HEIGHT - 1, WIDTH, 1, bColor, fontColor);
-	for (int i = 1; i < HEIGHT / 2 - 1; i++) {
-		gotoXY(WIDTH / 2 - 1, i * 2);
-		std::cout << "\xDD";
-	}
-	//circle(WIDTH / 2, HEIGHT / 2, 3);
+	drawMiddleLine();
 }
 
-void drawBar() {
+
+
+void drawBar(int x,int y) {
 	for (int i = 0; i < barLength; i++) {
-		gotoXY(2, HEIGHT / 2 - barLength/2 + i);
-		std::cout << barChar;
-		gotoXY(WIDTH - 3, HEIGHT / 2 - barLength/2 + i);
+		gotoXY(x, y - barLength/2 + i);
 		std::cout << barChar;
 	}
 }

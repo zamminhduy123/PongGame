@@ -19,9 +19,9 @@
 
 #define barLength 7
 
-#define speedRange 50
+#define speedRange 25
 #define defaultSpeed 100
-#define minSpeed 50
+#define minSpeed 10
 
 class CGame
 {
@@ -30,7 +30,6 @@ private:
 	CBar playerOne;
 	CBar playerTwo;
 	bool quit;
-	int width, height;
 	int playerOneScore, playerTwoScore;
 	int speed;
 
@@ -41,6 +40,8 @@ public:
 	void logic();
 	void run();
 	void pause();
+	void displayScore();
+	void unPause();
 	CGame();
 	~CGame();
 };
