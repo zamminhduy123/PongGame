@@ -9,8 +9,8 @@ int main()
 	CGame a;
 	int order = 0;
 	drawMenu(order);
-	if (order == 2) {
-		a.run();
+	if (order != 3) {
+		a.run(order);
 	}
 }
 

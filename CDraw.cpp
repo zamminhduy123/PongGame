@@ -113,6 +113,10 @@ bool drawMenu2(std::vector <std::string> selection, int n, int &order)
 				order = 2;
 				return 1;
 			}
+			else if (cur == 3) {
+				order = 1;
+				return 1;
+			}
 		}
 	}
 	setColor(0, fontColor); // set lai mau ban dau

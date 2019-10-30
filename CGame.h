@@ -19,9 +19,9 @@
 
 #define barLength 7
 
-#define speedRange 25
-#define defaultSpeed 100
-#define minSpeed 10
+#define speedRange 5
+#define defaultSpeed 75
+#define minSpeed 25
 
 class CGame
 {
@@ -38,8 +38,9 @@ public:
 	void initial();
 	void changeSpeed();
 	void logic();
-	void run();
+	void run(int);
 	void pause();
+	void botPlayerMove();
 	void displayScore();
 	void unPause();
 	CGame();

@@ -9,15 +9,16 @@ void CGame::upScore(CBar player) {
 		playerTwoScore++;
 	}
 	pong.reset();
+	speed = defaultSpeed;
 }
 
 void CGame::changeSpeed()
 {
-	if (speed >= minSpeed)
+	if (speed > minSpeed)
 		speed -= speedRange;
 	else
 	{
-		speed--;
+		speed = 10;
 	}
 }
 
@@ -57,6 +58,7 @@ void CGame::logic() {
 	if (pong.getCurX() == WIDTH - 2) {
 		upScore(playerOne);
 		pong.reset();
+
 	}
 }
 
@@ -79,6 +81,7 @@ void CGame::displayScore() {
 }
 
 void CGame::unPause() {
+	system("cls");
 	drawBoard();
 	drawBar(playerOne.getCurX(),playerOne.getCurY());
 	drawBar(playerTwo.getCurX(),playerTwo.getCurY());
@@ -88,7 +91,18 @@ void CGame::unPause() {
 
 }
 
-void CGame::run() {
+void CGame::botPlayerMove() {
+	if (pong.getCurX() > WIDTH / 2) {
+		if (playerTwo.getCurY() - barLength / 2 > pong.getCurY()) {
+			playerTwo.move(playerTwoUpControl);
+		}
+		else if (playerTwo.getCurY() + barLength / 2 < pong.getCurY()) {
+			playerTwo.move(playerTwoDownControl);
+		}
+	}
+}
+
+void CGame::run(int choice) {
 	char key;
 	system("cls");
 	gotoXY(1, 1);
@@ -102,7 +116,6 @@ void CGame::run() {
 			switch (key) {
 			case pauseGame:
 				pause();
-				system("cls");
 				unPause();
 				break;
 			case playerOneUpControl:
@@ -112,10 +125,12 @@ void CGame::run() {
 				playerOne.move(playerOneDownControl);
 				break;
 			case playerTwoUpControl:
-				playerTwo.move(playerTwoUpControl);
+				if (choice == 2)
+					playerTwo.move(playerTwoUpControl);
 				break;
-			case playerTwpDownControl:
-				playerTwo.move(playerTwpDownControl);
+			case playerTwoDownControl:
+				if (choice == 2)
+					playerTwo.move(playerTwoDownControl);
 				break;
 			case resetButton:
 				pong.randomDir();
@@ -124,12 +139,15 @@ void CGame::run() {
 				break;
 			}
 		}
+		if (choice == 1) {
+			botPlayerMove();
+		}
 		pong.draw(delChar);
 		logic();
 		displayScore();
 		pong.Move();
 		pong.draw(pongChar);
-		Sleep(defaultSpeed);
+		Sleep(speed);
 	}
 }
 

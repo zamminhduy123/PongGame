@@ -1,3 +1,8 @@
-﻿  CDraw.cpp
-d:\coder\oop\pong game\18120172\18120172\cdraw.cpp(23): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+﻿  CGame.cpp
+d:\coder\oop\pong game\18120172\18120172\graphic\graphics.h(282): warning C4273: 'getch': inconsistent dll linkage
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\conio.h(453): note: see previous definition of 'getch'
+d:\coder\oop\pong game\18120172\18120172\graphic\graphics.h(283): warning C4273: 'kbhit': inconsistent dll linkage
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\ucrt\conio.h(459): note: see previous definition of 'kbhit'
+d:\coder\oop\pong game\18120172\18120172\cgame.h(8): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+d:\coder\oop\pong game\18120172\18120172\cgame.cpp(162): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   18120172.vcxproj -> D:\Coder\OOP\Pong Game\18120172\Debug\18120172.exe

@@ -11,7 +11,7 @@
 #define playerOneUpControl 'w'
 #define playerOneDownControl 's'
 #define playerTwoUpControl KEY_UP
-#define playerTwpDownControl KEY_DOWN
+#define playerTwoDownControl KEY_DOWN
 #define barLength 7
 #define WIDTH 60
 #define HEIGHT 30
