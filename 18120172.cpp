@@ -6,11 +6,11 @@
 
 int main()
 {
-	CGame a;
-	int order = 0;
-	drawMenu(order);
+	CGame a; // tao game
+	int order = 0; // lua chon cua nguoi dung
+	drawMenu(order); // ve menu
 	if (order != 3) {
-		a.run(order);
+		a.run(order); // chay game
 	}
 }
 

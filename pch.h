@@ -8,9 +8,11 @@
 
 #ifndef PCH_H
 #define PCH_H
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <string>
 #include <vector>
+
 
 // TODO: add headers that you want to pre-compile here
 

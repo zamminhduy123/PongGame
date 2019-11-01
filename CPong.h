@@ -36,6 +36,13 @@ public:
 	dir getDir() {
 		return direction;
 	}
+	void setCur(int x, int y) {
+		curCor.setX(x);
+		curCor.setY(y);
+	}
+	void setDir(int past) {
+		direction = dir(past);
+	}
 	CPong();
 	CPong(int x, int y);
 	~CPong();

@@ -21,9 +21,9 @@
 class CBar
 {
 private:
-	Point curCor;
-	Point spawnCor;
-	int length;
+	Point curCor; // vi tri hien tai
+	Point spawnCor; // vi tri xuat hien
+	int length; // do dai 
 public:
 	void moveUp();
 	void moveDown();
@@ -41,6 +41,10 @@ public:
 	}
 	int getLength() {
 		return length;
+	}
+	void setCur(int x,int y) {
+		curCor.setX(x);
+		curCor.setY(y);
 	}
 	CBar(int x, int y,int);
 	CBar();

@@ -1,23 +1,18 @@
 #pragma once
-#include "pch.h"
-
+#include <iostream>
+using namespace std;
 
 class Point
 {
 	int x, y;
 public:
-	void input();
 	int getX();
 	int getY();
-	void setX(int newX) {
-		x = newX;
-	}
-	void setY(int newY) {
-		y = newY;
-	}
+	void setX(int);
+	void setY(int);
 	double distance(Point);
 	Point();
-	Point(int corX,int corY);
+	Point(int corX, int corY);
 	~Point();
 };
 

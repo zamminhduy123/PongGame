@@ -4,25 +4,30 @@
 #define WIDTH 60
 #define HEIGHT 30
 
+// tra ve vi tri ban dau
 void CPong::reset() {
 	curCor.setX(spawnCor.getX());
 	curCor.setY(spawnCor.getY());
-	direction = STOP;
+	direction = STOP; // ngung di chuyen
 }
 
+// doi huong di chuyen
 void CPong::changDir(dir newDir)
 {
 	direction = newDir;
 }
 
+// khoi tao
 void CPong::initial() {
 	spawnCor.setX(WIDTH / 2 - 1);
 	spawnCor.setY(HEIGHT / 2 - 1);
 	curCor = spawnCor;
 }
 
+// di chuyen
 void CPong::Move()
 {
+	// cong tru toa do theo huong
 	switch (direction) {
 	case STOP:
 		break;
@@ -51,6 +56,7 @@ void CPong::Move()
 	}
 }
 
+// ve banh tai diem xuat hien
 void CPong::draw(char c)
 {
 	gotoXY(curCor.getX(), curCor.getY());

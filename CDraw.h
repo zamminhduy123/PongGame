@@ -13,3 +13,5 @@ int drawMenu(int &order);
 bool drawMenu2(std::vector <std::string> selection, int n, int &order);
 void drawBar(int,int);
 void drawMiddleLine();
+int drawPause();
+void drawWinner(int);

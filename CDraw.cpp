@@ -12,6 +12,8 @@
 #define WIDTH 60
 #define HEIGHT 30
 
+#define loadGame 10
+
 #define barLength 7
 #define barChar '|'
 
@@ -71,6 +73,49 @@ void drawSelection(int x, int y, std::vector <std::string> menu, int cur, int De
 	setColor(0, fontColor);			// tra ve mau ban dau 
 }
 
+int drawPause() {
+	int x = xStart, y = yStart + secondMenuY;
+	std::vector <std::string> selection;
+	selection.push_back("CONTINUE\0");
+	selection.push_back("SAVE & EXIT!");
+	
+	drawSelection(x, y, selection,0, 6);          // ve ra 2 cai o trong selection 2
+	drawSelection(x, y + D, selection, 1, bColor);
+	int cur = 0;
+	char c;
+	while (1)
+	{
+		c = getch();  // nhan vao lua chon cua nguoi dung
+		if (c == 72 && cur != 0)  // mui ten di len
+		{
+			drawSelection(x, y - D, selection, cur - 1, 6); // ve hcn o tren mau khac
+			drawSelection(x, y, selection, cur, bColor);		// ve hinh chu nhat o duoi mau ban dau
+			y -= D;									// di chuyen con tro len tren
+			gotoXY(x, y);
+			cur -= 1;
+
+		}
+		else if (c == 80 && cur != 1)
+		{
+			drawSelection(x, y + D, selection, cur + 1, 6); // ve hcn o duoi mau khac
+			drawSelection(x, y, selection, cur, bColor);// ve hinh chu nhat o tren mau ban dau
+			y += D;									// di chuyen con tro xuong duoi
+			gotoXY(x, y);
+			cur += 1;
+		}
+		else if (c == 13)
+		{
+			if (cur == 0) {
+				return 1;
+			}
+			else if (cur == 1) {
+				return 2;
+			}
+		}
+	}
+	setColor(0, fontColor); // set lai mau ban dau
+}
+
 bool drawMenu2(std::vector <std::string> selection, int n, int &order)
 {
 	HideCursor();
@@ -121,14 +166,16 @@ bool drawMenu2(std::vector <std::string> selection, int n, int &order)
 	}
 	setColor(0, fontColor); // set lai mau ban dau
 }
-
+// ve thanh o giua ban choi 
 void drawMiddleLine() {
 	for (int i = 1; i < HEIGHT / 2 - 1; i++) {
-		gotoXY(WIDTH / 2 - 1, i * 2);
-		std::cout << "\xDD";
+		if (i*2 != HEIGHT / 2 - 1) {
+			gotoXY(WIDTH / 2 - 1, i * 2);
+			std::cout << "\xDD";
+		}
 	}
 }
-
+// ve ban` choi 
 void drawBoard() {
 	drawRect(0, 0, WIDTH, 1, bColor, fontColor);
 	drawRect(0, 0, 1, HEIGHT, bColor, fontColor);
@@ -137,25 +184,41 @@ void drawBoard() {
 	drawMiddleLine();
 }
 
-
-
+// ve thanh choi
 void drawBar(int x,int y) {
+
 	for (int i = 0; i < barLength; i++) {
 		gotoXY(x, y - barLength/2 + i);
 		std::cout << barChar;
 	}
 }
 
+// ve bang hien thi nguoi thang cuoc
+void drawWinner(int player) {
+	int x = xStart, y = yStart + 9;
+	std::vector <std::string> selection;
+	if (player == 1) {
+		selection.push_back("Player One Win !!!");
+	}
+	else {
+		selection.push_back("Player Two Win !!!");
+	}
+	drawSelection(x, y, selection, 0, RED);
+
+}
+
+// ve menu dau tien
 int drawMenu(int &order) {
 	HideCursor();
 	std::vector <std::string> selection;
-	selection.resize(6);
+	selection.resize(8);
 	selection[0] = "START GAME\0";
 	selection[1] = "LOAD GAME\0";
 	selection[2] = "EXIT\0";
 	selection[3] = "1 PLAYER\0";
 	selection[4] = "2 PLAYER\0";
 	selection[5] = "BACK\0";
+	
 	int n = selection.size() - 1;
 	int distance = 5;
 	char c;
@@ -212,6 +275,10 @@ int drawMenu(int &order) {
 			else if (cur == 2) {
 				std::cout << std::endl << std::endl;
 				exit(0); // thoat neu nguoi dung vao o THOAT
+			}
+			else if (cur == 1) {
+				order = loadGame;
+				return order;
 			}
 		}
 	}

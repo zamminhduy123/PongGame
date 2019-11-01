@@ -156,6 +156,7 @@
     <ClInclude Include="CGame.h" />
     <ClInclude Include="CPong.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="distd.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
